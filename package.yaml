@@ -1,0 +1,61 @@
+name:                ENIG-Server
+version:             0.0.0.1
+github:              "QuietJoon/ENIG-Server"
+license:             BSD3
+author:              "YongJoon Joe"
+maintainer:          "developer+ENIG@quietjoon.net"
+copyright:           "2019 YongJoon Joe"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+synopsis:            REST API web server of ENIG method
+category:            Web
+
+description:         Please see the README on GitHub at <https://github.com/QuietJoon/ENIG-Server#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+- aeson
+- text >= 0.12
+- vector
+- servant >= 0.16
+- servant-mock
+- warp
+- ENIG >= 0.0.1
+
+library:
+  source-dirs: src
+
+executables:
+  ENIG-Server-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - ENIG-Server
+    - servant
+
+tests:
+  ENIG-Server-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - ENIG-Server
+    - ENIG
+    - HUnit
+    - QuickCheck
+    - test-framework
+    - test-framework-hunit
+    - test-framework-quickcheck2
+    - test-framework-th
+    - base
+    - text
