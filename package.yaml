@@ -1,7 +1,7 @@
 name:                ENIG-Server
 version:             0.0.0.1
 github:              "QuietJoon/ENIG-Server"
-license:             BSD3
+license:             AllRightsReserved
 author:              "YongJoon Joe"
 maintainer:          "developer+ENIG@quietjoon.net"
 copyright:           "2019 YongJoon Joe"
@@ -18,12 +18,12 @@ description:         Please see the README on GitHub at <https://github.com/Quie
 dependencies:
 - base >= 4.7 && < 5
 - aeson
-- text >= 0.12
+- text
 - vector
 - servant >= 0.16
-- servant-mock
+- servant-server
 - warp
-- ENIG >= 0.0.1
+- ENIG
 
 library:
   source-dirs: src
@@ -38,7 +38,6 @@ executables:
     - -with-rtsopts=-N
     dependencies:
     - ENIG-Server
-    - servant
 
 tests:
   ENIG-Server-test:
@@ -50,12 +49,9 @@ tests:
     - -with-rtsopts=-N
     dependencies:
     - ENIG-Server
-    - ENIG
     - HUnit
     - QuickCheck
     - test-framework
     - test-framework-hunit
     - test-framework-quickcheck2
     - test-framework-th
-    - base
-    - text
