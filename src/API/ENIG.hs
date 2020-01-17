@@ -1,6 +1,5 @@
 {-# LANGUAGE DataKinds #-}
 {-# LANGUAGE DeriveGeneric #-}
-{-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE TypeOperators #-}
 
 module API.ENIG where
@@ -14,6 +13,7 @@ import           Servant
 import           Servant.API
 
 type ENIGAPI = "auto" :> ReqBody '[JSON] Str :> Post '[JSON] Str
+  :<|> "auto" :> Capture "str" Text :> Get '[PlainText] Text
 
 newtype Str = Str { _str :: Text } deriving (Generic, Show)
 
@@ -24,5 +24,7 @@ enigAPI :: Proxy ENIGAPI
 enigAPI = Proxy
 
 enigServer :: Server ENIGAPI
-enigServer = postGreetH
-    where postGreetH arg = return . Str . enigAuto . _str $ arg
+enigServer = postGreetH :<|> greetH
+ where
+  postGreetH = return . Str . enigAuto . _str
+  greetH = return . enigAuto
